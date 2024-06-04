@@ -16,8 +16,11 @@ function getHumanChoice(h = prompt('Choose your Choice')){
 }
 let humanCounter = 0;
 let computerCounter = 0;
+// const humanSelection = getHumanChoice();
+// const computerSelection = getComputerChoice();
 
 function playRound(human, computer){
+
     if(human === 'rock' && computer == 'scissors'){
         humanCounter++;
     }
@@ -32,5 +35,13 @@ function playRound(human, computer){
     }
     else{
         computerCounter++;
+    }
+}
+
+function playGame(){
+    for(let i = 0; i<4; i++){
+        playRound(getHumanChoice(), getComputerChoice());
+
+        console.log(getComputerChoice());
     }
 }
