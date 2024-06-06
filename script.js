@@ -6,7 +6,7 @@ function getComputerChoice() {
 }
 
 // Event listener for when the select element changes
-document.querySelector('.select').addEventListener('change', function() {
+document.querySelector('.select').addEventListener('change', () => {
     const humanChoice = this.value; // Get the selected value
     const computerChoice = getComputerChoice();
 
