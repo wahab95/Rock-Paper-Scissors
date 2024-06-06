@@ -1,47 +1,93 @@
 function getComputerChoice(){
-    let rand = Math.random()*3;
-    rand = Math.round(rand)
-    if(rand === 0 ){
+    
+    let rand = Math.random() * 3;
+    
+    rand = Math.round(rand);
+    
+    if ( rand === 0 ){
+    
         return "rock";
+    
     }
-    else if(rand === 1){
+    
+    else if ( rand === 1 ){
+    
         return "paper";
+    
     }
-    else{
-        return "scissors"
+    
+    else {
+
+        return "scissors";
+    
     }
+
 }
-function getHumanChoice(h = prompt('Choose your Choice')){
-    return h.toLowerCase();
+
+const human_choices = document.querySelectorAll('.select');
+
+function h() {
+
+    switch(human_choices){
+
+        case '.select #s1': return "rock";
+
+        case '.select #s2': return "paper";
+    
+        case '.select #s3': return "scissors";
+    
+    }
+
 }
+
 let humanCounter = 0;
 let computerCounter = 0;
+
 // const humanSelection = getHumanChoice();
 // const computerSelection = getComputerChoice();
 
 function playRound(human, computer){
 
-    if(human === 'rock' && computer == 'scissors'){
+    if( human === 'rock' && computer == 'scissors' ){
+
         humanCounter++;
+
     }
-    else if(human === 'scissors' && computer == 'paper'){
+
+    else if( human === 'scissors' && computer == 'paper' ){
+
         humanCounter++;
+
     }
-    else if(human === 'paper' && computer == 'rock'){
+
+    else if( human === 'paper' && computer == 'rock' ){
+
         humanCounter++;
+
     }
-    else if(human === computer){
+
+    else if( human === computer ){
         
     }
-    else{
+
+    else {
+
         computerCounter++;
+
     }
+
 }
 
-function playGame(){
-    for(let i = 0; i<4; i++){
-        playRound(getHumanChoice(), getComputerChoice());
 
-        console.log(getComputerChoice());
+
+function playGame(){
+
+    for( let i = 0; i<4; i++ ) {
+
+        playRound( h(), getComputerChoice() );
+
+        console.log( h() );
+
     }
+
 }
