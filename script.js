@@ -7,11 +7,16 @@ function getComputerChoice() {
 
 // Event listener for when the select element changes
 document.querySelector('.select').addEventListener('change', () => {
-    const humanChoice = this.value; // Get the selected value
+    const humanChoice = this.value;
     const computerChoice = getComputerChoice();
 
-    playRound(humanChoice, computerChoice); // Play a round
-    displayScore(); // Update the displayed score
+    playRound(humanChoice, computerChoice);
+    displayScore();
+
+    
+    for (const option of this.options) {
+        option.disabled = option.value === humanChoice;
+    }
 });
 
 let humanCounter = 0;
