@@ -1,42 +1,42 @@
 function getComputerChoice() {
     const choices = ["rock", "paper", "scissors"];
-    const randIndex = Math.floor(Math.random() * 3);
-    document.getElementById('computer').textContent = choices[randIndex];
-    return choices[randIndex]; // Return the computer's choice
+    const randIndex = Math.floor(Math.random() * choices.length); 
+    const computerChoice = choices[randIndex];
+    document.getElementById('computer').textContent = computerChoice;
+    return computerChoice; 
 }
 
-// Event listener for when the select element changes
-document.querySelector('.select').addEventListener('change', () => {
-    const humanChoice = this.value;
+// Event listener for the select element
+document.querySelector('.select').addEventListener('change', function() {
+    const humanChoice = this.value; 
     const computerChoice = getComputerChoice();
 
-    playRound(humanChoice, computerChoice);
-    displayScore();
-
-    
-    for (const option of this.options) {
-        option.disabled = option.value === humanChoice;
-    }
+    const roundResult = playRound(humanChoice, computerChoice);
+    document.getElementById('result').textContent = `Result: ${roundResult}, Human: ${humanCounter}, Computer: ${computerCounter}`; 
 });
 
 let humanCounter = 0;
 let computerCounter = 0;
 
 function playRound(human, computer) {
-    if (
+    let result = "";
+
+    if (human === computer) {
+        result = "It's a tie!";
+    } else if (
         (human === 'rock' && computer === 'scissors') ||
         (human === 'scissors' && computer === 'paper') ||
         (human === 'paper' && computer === 'rock')
     ) {
+        result = "You win!";
         humanCounter++;
-    } else if (human !== computer) {
+    } else {
+        result = "Computer wins!";
         computerCounter++;
     }
+
+    return result; // Return the result of the round
 }
 
-function displayScore() {
-    document.getElementById('result').textContent = `human score: ${humanCounter}, computer score: ${computerCounter}`;
-}
-
-// Initial computer choice display at the start
+// Initial display of the computer's choice
 getComputerChoice();
