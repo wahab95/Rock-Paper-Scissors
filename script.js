@@ -1,93 +1,37 @@
-function getComputerChoice(){
-    
-    let rand = Math.random() * 3;
-    
-    rand = Math.round(rand);
-    
-    if ( rand === 0 ){
-    
-        return "rock";
-    
-    }
-    
-    else if ( rand === 1 ){
-    
-        return "paper";
-    
-    }
-    
-    else {
-
-        return "scissors";
-    
-    }
-
+function getComputerChoice() {
+    const choices = ["rock", "paper", "scissors"];
+    const randIndex = Math.floor(Math.random() * 3);
+    document.getElementById('computer').textContent = choices[randIndex];
+    return choices[randIndex]; // Return the computer's choice
 }
 
-const human_choices = document.querySelectorAll('.select');
+// Event listener for when the select element changes
+document.querySelector('.select').addEventListener('change', function() {
+    const humanChoice = this.value; // Get the selected value
+    const computerChoice = getComputerChoice();
 
-function h() {
-
-    switch(human_choices){
-
-        case '.select #s1': return "rock";
-
-        case '.select #s2': return "paper";
-    
-        case '.select #s3': return "scissors";
-    
-    }
-
-}
+    playRound(humanChoice, computerChoice); // Play a round
+    displayScore(); // Update the displayed score
+});
 
 let humanCounter = 0;
 let computerCounter = 0;
 
-// const humanSelection = getHumanChoice();
-// const computerSelection = getComputerChoice();
-
-function playRound(human, computer){
-
-    if( human === 'rock' && computer == 'scissors' ){
-
+function playRound(human, computer) {
+    if (
+        (human === 'rock' && computer === 'scissors') ||
+        (human === 'scissors' && computer === 'paper') ||
+        (human === 'paper' && computer === 'rock')
+    ) {
         humanCounter++;
-
-    }
-
-    else if( human === 'scissors' && computer == 'paper' ){
-
-        humanCounter++;
-
-    }
-
-    else if( human === 'paper' && computer == 'rock' ){
-
-        humanCounter++;
-
-    }
-
-    else if( human === computer ){
-        
-    }
-
-    else {
-
+    } else if (human !== computer) {
         computerCounter++;
-
     }
-
 }
 
-
-
-function playGame(){
-
-    for( let i = 0; i<4; i++ ) {
-
-        playRound( h(), getComputerChoice() );
-
-        console.log( h() );
-
-    }
-
+function displayScore() {
+    document.getElementById('result').textContent = `human score: ${humanCounter}, computer score: ${computerCounter}`;
 }
+
+// Initial computer choice display at the start
+getComputerChoice();
